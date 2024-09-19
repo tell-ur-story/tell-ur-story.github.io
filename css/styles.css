@@ -1,0 +1,169 @@
+/* General styles */
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  background-color: #F0F4F8; /* Soft gray-white from the logo */
+  color: #003B57; /* Deep blue text */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* Logo */
+.logo-container {
+  text-align: center;
+  margin: 20px 0;
+}
+
+.logo {
+  max-width: 150px;
+}
+
+/* Main Title */
+h1 {
+  font-size: 2rem;
+  text-align: center;
+  margin-bottom: 20px;
+  color: #00B7C2; /* Primary teal from the logo */
+}
+
+/* Form Container */
+.form-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 30px;
+}
+
+input[type="text"] {
+  padding: 10px;
+  width: 100%;
+  max-width: 300px;
+  border: 1px solid #9FCB6B; /* Gradient light green */
+  border-radius: 5px;
+  margin-bottom: 10px;
+  background-color: #fff;
+}
+
+button {
+  background-color: #00B7C2; /* Primary teal */
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+button:hover {
+  background-color: #1A505A; /* Dark greenish-blue */
+}
+
+/* Template container */
+.template-container {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 20px;
+  padding: 20px;
+}
+
+/* Template link */
+.template-link {
+  text-decoration: none;
+  width: 100%;
+  max-width: 300px;
+  display: block;
+}
+
+/* Template block */
+.template-block {
+  background-color: white;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  width: 100%;
+  text-align: center;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  cursor: pointer;
+}
+
+.template-block:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+}
+
+.template-block img {
+  max-width: 100%;
+  height: auto;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+}
+
+.template-title {
+  font-size: 1rem;
+  margin: 10px 0;
+  color: #1A505A;
+}
+
+.template-description {
+  padding: 0 15px;
+  font-size: .75rem;
+  margin-bottom: 10px;
+  color: #003B57;
+}
+
+/* Add button inside template blocks */
+.select-template-btn {
+  background-color: #00B7C2;
+  color: white;
+  padding: 10px 15px;
+  border: none;
+  border-radius: 5px;
+  margin-bottom: 15px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.select-template-btn:hover {
+  background-color: #1A505A;
+}
+
+/* Responsive styles */
+@media (max-width: 768px) {
+  h1 {
+    font-size: 1.5rem;
+  }
+
+  .form-container {
+    padding: 0 20px;
+  }
+
+  input[type="text"] {
+    max-width: 100%;
+  }
+
+  .template-block {
+    max-width: 100%;
+  }
+}
+
+@media (max-width: 480px) {
+  h1 {
+    font-size: 1.5rem;
+  }
+
+  button {
+    width: 100%;
+  }
+
+  .template-title {
+    font-size: 1.25rem;
+  }
+
+  .template-description {
+    font-size: 0.9rem;
+  }
+}

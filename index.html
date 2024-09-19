@@ -1,125 +1,65 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
   <head>
-    <title>Create your own site</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Create Your Own Site</title>
+    <link rel="stylesheet" href="css/styles.css" />
+    <link rel="icon" href="favicon.ico" type="image/x-icon" />
   </head>
   <body>
-    <h1>Create your own site</h1>
+    <!-- Logo Image -->
+    <div class="logo-container">
+      <img src="images/logo.png" alt="Website Logo" class="logo" />
+    </div>
 
-    <label for="repoName">Site Name:</label>
-    <input type="text" id="repoName" placeholder="Enter name" />
+    <h1>Create Your Own</h1>
 
-    <button onclick="createRepoAndPR()">Create</button>
+    <div class="form-container">
+      <input type="text" id="repoName" placeholder="Enter name" />
+    </div>
+
+    <div class="template-container">
+      <a href="#" class="template-link" id="createBtn">
+        <div class="template-block" data-template="cv">
+          <img src="images/cv.png" alt="CV Template" />
+          <div class="template-content">
+            <h4 class="template-title">Personalized CV</h4>
+            <p class="template-description">
+              Create a beautiful CV to showcase your professional journey.
+            </p>
+          </div>
+        </div>
+      </a>
+
+      <a href="#" class="template-link" id="createBtn">
+        <div class="template-block" data-template="dashboard">
+          <img src="images/data.png" alt="Dashboard Template" />
+          <div class="template-content">
+            <h4 class="template-title">Data Dashboard</h4>
+            <p class="template-description">
+              Build interactive dashboards to visualize data and insights.
+            </p>
+          </div>
+        </div>
+      </a>
+
+      <a href="#" class="template-link" id="createBtn">
+        <div class="template-block" data-template="blog">
+          <img src="images/blog.png" alt="Blog Template" />
+          <div class="template-content">
+            <h4 class="template-title">Tell a Story</h4>
+            <p class="template-description">
+              Start a story to share your thoughts, stories, and ideas.
+            </p>
+          </div>
+        </div>
+      </a>
+    </div>
 
     <!-- Placeholder to display the GitHub Pages URL -->
     <p id="repoUrl"></p>
 
-    <script>
-      async function createRepoAndPR() {
-        const tellurstory =
-          "VJ0cxlWam9mSFZUVQhFRWZ3Uxknbi9URDV2Zh5WZTJ3MxYDZwIHRysUOPtkTsllM4kjYClkR0VFSoF2XPhXMyJTc3sUO5gDawkFUWpUTMJUMx8FdhB3XiVHa0l2Z"; // Replace with your GitHub token
-
-        const repoName = document.getElementById("repoName").value; // Get the repository name from input
-
-        if (!repoName) {
-          alert("Please enter a repository name.");
-          return;
-        }
-
-        // Repository details
-        const repoData = {
-          name: repoName, // Replace with your repository name
-          description: "This is my new repository", // Optional
-          private: false, // Set to true if you want it to be private
-        };
-
-        // Create the repository
-        try {
-          const repoResponse = await fetch(
-            "https://api.github.com/user/repos",
-            {
-              method: "POST",
-              headers: {
-                Authorization: `token ${atob(
-                  tellurstory.split("").reverse().join("")
-                )}`,
-                Accept: "application/vnd.github.v3+json",
-              },
-              body: JSON.stringify(repoData),
-            }
-          );
-          const repoResult = await repoResponse.json();
-
-          // Check if repo was created successfully
-          if (repoResponse.ok) {
-            console.log("Repository created:", repoResult);
-            const title = "${title}"; // Example title
-            const content = `<html>
-                                <head>
-                                    <title>${repoName}</title>
-                                </head>
-                                <body>
-                                    <h1>${repoName}</h1>
-                                    <p>This is a placeholder page for the ${repoName} repository.</p>
-                                </body>
-                                </html>`;
-
-            const fileData = {
-              message: "initial-Commit",
-              content: btoa(content), // Base64 encode the content
-              branch: "main",
-            };
-
-            const fileResponse = await fetch(
-              `https://api.github.com/repos/${repoResult.full_name}/contents/index.html`,
-              {
-                method: "PUT",
-                headers: {
-                  Authorization: `token ${atob(
-                    tellurstory.split("").reverse().join("")
-                  )}`,
-                  Accept: "application/vnd.github.v3+json",
-                },
-                body: JSON.stringify(fileData),
-              }
-            );
-            const fileResult = await fileResponse.json();
-            console.log("File pushed:", fileResult);
-
-            const pagesData = {
-              source: {
-                branch: "main", // Set the branch
-                path: "/", // Set the root folder
-              },
-            };
-
-            const pagesResponse = await fetch(
-              `https://api.github.com/repos/${repoResult.full_name}/pages`,
-              {
-                method: "POST",
-                headers: {
-                  Authorization: `token ${atob(
-                    tellurstory.split("").reverse().join("")
-                  )}`,
-                  Accept: "application/vnd.github.v3+json",
-                },
-                body: JSON.stringify(pagesData),
-              }
-            );
-            const pagesResult = await pagesResponse.json();
-            console.log("GitHub Pages enabled:", pagesResult);
-
-            const repoUrl = `https://my-story-teller.github.io/${repoName}/`;
-            document.getElementById(
-              "repoUrl"
-            ).innerHTML = `Your site URL: <a href="${repoUrl}" target="_blank">Your Site</a>`;
-          } else {
-            console.error("Failed to create repository:", repoResult);
-          }
-        } catch (error) {
-          console.error("Error:", error);
-        }
-      }
-    </script>
+    <script src="js/main.js"></script>
   </body>
 </html>
