@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Create GitHub Repo and Pull Request</title>
+</head>
+<body>
+    <h1>Create GitHub Repository and Pull Request</h1>
+    
+    <label for="repoName">Repository Name:</label>
+    <input type="text" id="repoName" placeholder="Enter repository name">
+    
+    <button onclick="createRepoAndPR()">Create Repository and Pull Request</button>
+
+    <script>
+        async function createRepoAndPR() {
+            const token = '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'; // Replace with your GitHub token
+
+            const repoName = document.getElementById('repoName').value; // Get the repository name from input
+
+            if (!repoName) {
+                alert('Please enter a repository name.');
+                return;
+            }
+
+            // Repository details
+            const repoData = {
+                name: repoName, // Replace with your repository name
+                description: 'This is my new repository', // Optional
+                private: false // Set to true if you want it to be private
+            };
+
+            // Create the repository
+            try {
+                const repoResponse = await fetch('https://api.github.com/user/repos', {
+                    method: 'POST',
+                    headers: {
+                        'Authorization': `token ${token}`,
+                        'Accept': 'application/vnd.github.v3+json'
+                    },
+                    body: JSON.stringify(repoData)
+                });
+                const repoResult = await repoResponse.json();
+                console.log('Repository created:', repoResult);
+
+                // Check if repo was created successfully
+                if (repoResponse.ok) {
+
+                    // You need to create a branch by using Git operations or GitHub API directly
+
+                    // Create a pull request
+                    const prData = {
+                        owner: 'OWNER',
+                        repo: 'REPO',
+                        title: 'Add initial files',
+                        head: 'octocat:new-feature',
+                        base: 'master',
+                        body: 'This is the initial pull request to add files to the repository.'
+                    };
+
+                    const prResponse = await fetch(`https://api.github.com/repos/my-story-teller/${repoData.name}/pulls`, {
+                        method: 'POST',
+                        headers: {
+                            'Authorization': `token ${token}`,
+                            'Accept': 'application/vnd.github.v3+json'
+                        },
+                        body: JSON.stringify(prData)
+                    });
+                    const prResult = await prResponse.json();
+                    console.log('Pull request created:', prResult);
+                } else {
+                    console.error('Failed to create repository:', repoResult);
+                }
+            } catch (error) {
+                console.error('Error:', error);
+            }
+        }
+    </script>
+</body>
+</html>
