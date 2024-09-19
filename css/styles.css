@@ -9,6 +9,14 @@ body {
   display: flex;
   flex-direction: column;
   align-items: center;
+  height: 100%;
+}
+
+
+/* Main content should grow to fill the remaining space */
+.main-content {
+  flex-grow: 1; /* Fills remaining space between header and footer */
+  width: 100%;
 }
 
 /* Logo */
