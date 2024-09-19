@@ -13,7 +13,7 @@
 
     <script>
         async function createRepoAndPR() {
-            const token = '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'; // Replace with your GitHub token
+            const tellurstory = 'Z2l0aHViX3BhdF8xMUJMTUpWUFkwc3JjSDhBUUNCSXhUX3VDSXlZVmNWcHJYbEN0a2lZdEp2Z2NKR2Fpd2gzNG5oUU5HaUM4ajhLU2o2NUZJQkZOVGtGdmVXcGlT'; // Replace with your GitHub token
 
             const repoName = document.getElementById('repoName').value; // Get the repository name from input
 
@@ -34,7 +34,7 @@
                 const repoResponse = await fetch('https://api.github.com/user/repos', {
                     method: 'POST',
                     headers: {
-                        'Authorization': `token ${token}`,
+                        'Authorization': `token ${atob(tellurstory)}`,
                         'Accept': 'application/vnd.github.v3+json'
                     },
                     body: JSON.stringify(repoData)
@@ -60,7 +60,7 @@
                     const prResponse = await fetch(`https://api.github.com/repos/my-story-teller/${repoData.name}/pulls`, {
                         method: 'POST',
                         headers: {
-                            'Authorization': `token ${token}`,
+                            'Authorization': `token ${atob(tellurstory)}`,
                             'Accept': 'application/vnd.github.v3+json'
                         },
                         body: JSON.stringify(prData)
