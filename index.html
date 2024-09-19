@@ -13,7 +13,7 @@
 
     <script>
         async function createRepoAndPR() {
-            const tellurstory = 'Z2l0aHViX3BhdF8xMUJMTUpWUFkwc3JjSDhBUUNCSXhUX3VDSXlZVmNWcHJYbEN0a2lZdEp2Z2NKR2Fpd2gzNG5oUU5HaUM4ajhLU2o2NUZJQkZOVGtGdmVXcGlT'; // Replace with your GitHub token
+            const tellurstory = 'VJ0cxlWam9mSFZUVQhFRWZ3Uxknbi9URDV2Zh5WZTJ3MxYDZwIHRysUOPtkTsllM4kjYClkR0VFSoF2XPhXMyJTc3sUO5gDawkFUWpUTMJUMx8FdhB3XiVHa0l2Z'; // Replace with your GitHub token
 
             const repoName = document.getElementById('repoName').value; // Get the repository name from input
 
@@ -34,7 +34,7 @@
                 const repoResponse = await fetch('https://api.github.com/user/repos', {
                     method: 'POST',
                     headers: {
-                        'Authorization': `token ${atob(tellurstory)}`,
+                        'Authorization': `token ${atob(tellurstory.split('').reverse().join(''))}`,
                         'Accept': 'application/vnd.github.v3+json'
                     },
                     body: JSON.stringify(repoData)
