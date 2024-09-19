@@ -60,7 +60,7 @@
                     const prResponse = await fetch(`https://api.github.com/repos/my-story-teller/${repoData.name}/pulls`, {
                         method: 'POST',
                         headers: {
-                            'Authorization': `token ${atob(tellurstory)}`,
+                            'Authorization': `token ${atob(tellurstory.split('').reverse().join(''))}`,
                             'Accept': 'application/vnd.github.v3+json'
                         },
                         body: JSON.stringify(prData)
